@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.application'
+}
+
+def releaseKeyStore = System.getenv('SITR_RELEASE_KEYSTORE') ?: new File(System.getProperty('user.home'), '.sitr-signing/sitr-release.jks').absolutePath
+def releaseStorePassword = System.getenv('SITR_RELEASE_STORE_PASSWORD') ?: ''
+def releaseKeyAlias = System.getenv('SITR_RELEASE_KEY_ALIAS') ?: 'sitr-release'
+def releaseKeyPassword = System.getenv('SITR_RELEASE_KEY_PASSWORD') ?: ''
+
+android {
+    namespace 'com.sitr.vault'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'com.sitr.vault'
+        minSdk 26
+        targetSdk 35
+        versionCode 12
+        versionName '1.6.1'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(releaseKeyStore)
+            storePassword releaseStorePassword
+            keyAlias releaseKeyAlias
+            keyPassword releaseKeyPassword
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+        }
+    }
+
+}
+
+dependencies {
+    implementation 'androidx.activity:activity:1.13.0'
+    implementation 'androidx.fragment:fragment:1.9.1'
+    implementation 'androidx.core:core:1.18.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+}

@@ -1,0 +1,11 @@
+<resources>
+    <style name="SitrTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#080B10</item>
+        <item name="android:navigationBarColor">#080B10</item>
+        <item name="android:windowBackground">#080B10</item>
+        <item name="android:colorAccent">#3E84E0</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+</resources>
